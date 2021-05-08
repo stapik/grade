@@ -72,11 +72,6 @@ public class Main {
             return map;
         }
 
-        /**
-         * 5+3*(2-2)/3
-         * @param str
-         * @return
-         */
         public double eval(final String str) {
             return new Object() {
                 int pos = -1, ch;
