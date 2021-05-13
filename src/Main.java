@@ -51,15 +51,15 @@ public class Main {
 
         public void run() {
             String mathExpression = formula;
-            HashMap<String, Double> argsMap = argsToMap(arguments);
+            Map<String, Double> argsMap = argsToMap(arguments);
             for (Map.Entry<String, Double> entry : argsMap.entrySet()) {
                 mathExpression = mathExpression.replaceAll(entry.getKey(), entry.getValue().toString());
             }
             System.out.printf("Результат: %s\n", eval(mathExpression));
         }
 
-        private HashMap<String, Double> argsToMap(String arguments) throws IllegalArgumentException {
-            HashMap<String, Double> map = new HashMap<>();
+        private Map<String, Double> argsToMap(String arguments) throws IllegalArgumentException {
+            Map<String, Double> map = new HashMap<>();
             String[] arr = arguments.split(" ");
             String[] temp;
             for (String item : arr) {
