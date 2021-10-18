@@ -1,4 +1,4 @@
-package yandex.b;
+package yandex.b1;
 
 import java.io.*;
 
