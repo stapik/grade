@@ -15,7 +15,7 @@ public class Benches {
 
         for (int i = 0; i < benchesCount; i++) {
             nextValue = inp.nextInt();
-            if (isOdd && nextValue == (length - 1) / 2) {
+            if (isOdd && nextValue == center) {
                 result.add(String.valueOf(nextValue));
                 break;
             }
