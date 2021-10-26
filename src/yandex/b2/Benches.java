@@ -30,5 +30,6 @@ public class Benches {
         }
 
         System.out.println(String.join(" ", result));
+        inp.close();
     }
 }

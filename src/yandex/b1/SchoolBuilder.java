@@ -14,5 +14,6 @@ public class SchoolBuilder {
             }
         }
         System.out.println(val);
+        myInput.close();
     }
 }

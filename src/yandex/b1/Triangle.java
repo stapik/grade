@@ -19,6 +19,7 @@ public class Triangle {
             map.put(3, Math.pow(pX, 2) + Math.pow(pY - d, 2));
             System.out.println(getKeyWithMinValue(map));
         }
+        myInput.close();
     }
 
     private static Integer getKeyWithMinValue(Map<Integer, Double> map) {

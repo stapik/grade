@@ -17,5 +17,6 @@ public class Line {
         }
 
         System.out.println(map.isEmpty() ? null : map.lastEntry().getValue());
+        inp.close();
     }
 }

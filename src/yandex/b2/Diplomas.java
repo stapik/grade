@@ -17,5 +17,6 @@ public class Diplomas {
         seconds -= maxDiplomas;
 
         System.out.println(seconds);
+        inp.close();
     }
 }

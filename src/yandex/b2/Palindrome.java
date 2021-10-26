@@ -14,5 +14,6 @@ public class Palindrome {
             }
         }
         System.out.println(count);
+        inp.close();
     }
 }
