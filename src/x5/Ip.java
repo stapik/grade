@@ -14,7 +14,7 @@ public class Ip {
 
         Pattern pattern = Pattern.compile("([0-9{1,3}]{1,3}[.]){3}[0-9{1,3}]{1,3}");
         Matcher matcher = pattern.matcher(s);
-        return matcher.groupCount() == 1 && matcher.matches();
+        return matcher.matches();
     }
 
     public static void runCode() {
