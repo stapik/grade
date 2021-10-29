@@ -1,35 +1,41 @@
-package job;
+package grade;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Main {
+public class App {
 
     private static String readInput() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         return bufferedReader.readLine();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        System.out.println("Hello!");
+    }
+
+    public static void run() throws IOException {
         do {
-            System.out.println("Введите формулу:");
+            System.out.println("Enter the formula:");
             String formula = readInput().replaceAll("[^0-9A-Za-z/*+()-.]", "");
             if (formula.length() == 0) {
-                throw new IllegalArgumentException("Формула не введена");
+                throw new IllegalArgumentException("Formula not entered");
             }
 
-            System.out.println("Введите аргументы (пример: a=1 b=5 h=12):");
+            System.out.println("Enter the arguments (example: a=1 b=5 h=12):");
             String arguments = readInput().replaceAll("[^0-9A-Za-z .=]", "");
             if (arguments.length() == 0) {
-                throw new IllegalArgumentException("Аргументы не введены");
+                throw new IllegalArgumentException("No arguments entered");
             }
 
-            Calculator calc = new Calculator(arguments, formula);
+            App.Calculator calc = new App.Calculator(arguments, formula);
             calc.run();
 
-            System.out.println("Продолжить? (y/n)");
+            System.out.println("Continue? (y/n)");
             String answer = readInput();
             if (answer.equals("n")) {
                 break;
@@ -57,7 +63,7 @@ public class Main {
             for (Map.Entry<String, Double> entry : argsMap.entrySet()) {
                 mathExpression = mathExpression.replaceAll(entry.getKey(), entry.getValue().toString());
             }
-            System.out.printf("Результат: %s\n", eval(mathExpression));
+            System.out.printf("Result: %s\n", eval(mathExpression));
         }
 
         private Map<String, Double> argsToMap(String arguments) throws IllegalArgumentException {
@@ -67,7 +73,7 @@ public class Main {
             for (String item : arr) {
                 temp = item.split("=");
                 if (temp.length != 2 || temp[0].length() != 1) {
-                    throw new IllegalArgumentException("Неверный формат аргумента: '" + item + "' (" + Arrays.toString(temp) + ")");
+                    throw new IllegalArgumentException("Invalid argument format: '" + item + "' (" + Arrays.toString(temp) + ")");
                 }
                 map.put(temp[0].replace(" ", ""), Double.parseDouble(temp[1]));
             }
