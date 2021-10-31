@@ -17,6 +17,7 @@ public class Supplier {
         }
 
         while (n > 0) {
+            // TODO: refactoring
             for (int i = 0; i < departmentList.size(); i++) {
                 d = departmentList.get(i);
                 tempN = Math.min(n, d.availableProducts());
