@@ -10,7 +10,7 @@ public class Salary {
         cash.forEach(v -> map.merge(v, 1, Integer::sum));
         int count, key, value, div;
 
-        while (s != 0) {
+        while (s > 0) {
             entry = map.firstEntry();
             key = entry.getKey();
             value = entry.getValue();

@@ -8,33 +8,41 @@ public class Supplier {
     public static String getResult(int n, List<Integer> price, List<Integer> amount, List<Integer> count, List<Integer> delivery) {
         List<Department> departmentList = new ArrayList<>();
         List<String> result = new ArrayList<>();
-        int department = 0, departmentCount = 0, tempN = 0;
-        double departmentPrice = 0, productPrice = 0;
-        Department d;
+        int departmentIdx = -1, departmentProductCount = 0, tempN;
+        double departmentPrice = 0, tempPrice;
+        Department department;
 
         for (int i = 0; i < delivery.size(); i++) {
             departmentList.add(i, new Department(price.get(i), amount.get(i), count.get(i), delivery.get(i)));
         }
 
         while (n > 0) {
-            // TODO: refactoring
             for (int i = 0; i < departmentList.size(); i++) {
-                d = departmentList.get(i);
-                tempN = Math.min(n, d.availableProducts());
-                productPrice = (double) d.calcOrder(tempN) / tempN;
-                if ((departmentPrice == 0 || productPrice < departmentPrice) && tempN != 0) {
-                    department = i;
-                    departmentPrice = productPrice;
-                    departmentCount = tempN;
+                department = departmentList.get(i);
+                tempN = Math.min(n, department.availableProducts());
+                if (tempN == 0) {
+                    continue;
+                }
+                tempPrice = (double) department.calcOrder(tempN) / tempN;
+                if ((departmentPrice == 0 || tempPrice < departmentPrice)) {
+                    departmentIdx = i;
+                    departmentPrice = tempPrice;
+                    departmentProductCount = tempN;
                 }
             }
 
-            if (!departmentList.get(department).createOrder(departmentCount)) {
+            if (departmentIdx == -1) {
                 break;
             }
-            n -= departmentCount;
-            departmentPrice = 0;
-            result.add(String.valueOf(department));
+
+            if (departmentList.get(departmentIdx).createOrder(departmentProductCount)) {
+                n -= departmentProductCount;
+                result.add(String.valueOf(departmentIdx));
+
+                departmentIdx = -1;
+                departmentPrice = 0;
+                departmentProductCount = 0;
+            }
         }
 
         return String.join(",", result);
@@ -62,11 +70,11 @@ public class Supplier {
         }
 
         public boolean createOrder(int productCount) {
-            int batches = calcParts(productCount);
-            if (batches > count) {
+            int parts = calcParts(productCount);
+            if (parts > count) {
                 return false;
             }
-            count -= batches;
+            count -= parts;
             return true;
         }
 
