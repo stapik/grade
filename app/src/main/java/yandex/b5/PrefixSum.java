@@ -6,18 +6,14 @@ public class PrefixSum {
 
     public static void main(String[] args) {
         Scanner inp = new Scanner(System.in);
-        Scanner paramsScan = new Scanner(inp.nextLine());
-        Scanner arrayScan = new Scanner(inp.nextLine());
-        int arraySize = paramsScan.nextInt(), countRequests = paramsScan.nextInt(), from, to;
+        int arraySize = inp.nextInt(), countRequests = inp.nextInt(), from, to;
         ArrayList<Long> prefixSum = new ArrayList<>();
-        paramsScan.close();
 
         prefixSum.add(0L);
         while (arraySize != 0) {
-            prefixSum.add(prefixSum.get(prefixSum.size() - 1) + arrayScan.nextInt());
+            prefixSum.add(prefixSum.get(prefixSum.size() - 1) + inp.nextInt());
             arraySize--;
         }
-        arrayScan.close();
 
         while (countRequests != 0) {
             from = inp.nextInt() - 1;
