@@ -1,4 +1,4 @@
-package yandex.b_n;
+package yandex.b7;
 
 import java.io.*;
 import java.nio.file.Files;
