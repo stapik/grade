@@ -10,7 +10,7 @@ public class Customs {
     public static void main(String[] args) {
         Scanner inp = new Scanner(System.in);
         int count = inp.nextInt(), numberOfCargo = 0, maxNumbersOfCargo = 0, timeIn, timeProcessing;
-        List<Integer[]> events = new ArrayList<>(count * 2);
+        List<Integer[]> events = new ArrayList<>(count * 2 + 2);
         while (count > 0) {
             timeIn = inp.nextInt();
             timeProcessing = inp.nextInt();
