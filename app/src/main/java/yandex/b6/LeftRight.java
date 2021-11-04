@@ -12,7 +12,6 @@ public class LeftRight {
         Scanner inp = new Scanner(System.in);
         int n = inp.nextInt(), leftIdx, rightIdx;
         List<Integer> arr = new ArrayList<>();
-        List<String> result = new ArrayList<>();
 
         while (n != 0) {
             arr.add(inp.nextInt());
