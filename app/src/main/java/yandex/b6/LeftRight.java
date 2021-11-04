@@ -22,11 +22,7 @@ public class LeftRight {
         while (countRequests > 0) {
             int number = inp.nextInt();
             leftIdx = lBinSearch(0, arr.size() - 1, (index) -> arr.get(index) >= number);
-            if (leftIdx == arr.size() - 1) {
-                rightIdx = arr.size() - 1;
-            } else {
-                rightIdx = rBinSearch(leftIdx, arr.size() - 1, (index) -> arr.get(index) <= number);
-            }
+            rightIdx = rBinSearch(leftIdx, arr.size() - 1, (index) -> arr.get(index) <= number);
 
             if (leftIdx == rightIdx && arr.get(leftIdx) != number) {
                 System.out.println("0 0");
