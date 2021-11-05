@@ -18,6 +18,7 @@ public class Customs {
             events.add(new Integer[]{-1, timeIn + timeProcessing});
             count--;
         }
+        inp.close();
         events.sort(((Comparator<Integer[]>) (o1, o2) -> o1[1].compareTo(o2[1])).thenComparing((o1, o2) -> o1[0].compareTo(o2[0])));
 
         if (events.size() < 2) {

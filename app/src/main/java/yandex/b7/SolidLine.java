@@ -14,6 +14,7 @@ public class SolidLine {
             events.add(new Event(Type.END, inp.nextInt()));
             count--;
         }
+        inp.close();
         events.sort(Comparator.comparing(Event::getValue).thenComparing(Event::getType));
 
         for (Event event : events) {
