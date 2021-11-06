@@ -8,7 +8,7 @@ public class BinTree {
 
     public static void main(String[] args) throws IOException {
         Scanner inp = new Scanner(System.in);
-        Node tree = new Node();
+        Node<Integer> tree = new Node<>();
 
         while (inp.hasNext()) {
             switch (inp.next()) {
@@ -27,19 +27,19 @@ public class BinTree {
         }
     }
 
-    private static class Node {
-        private Integer value;
-        private Node left;
-        private Node right;
+    private static class Node<T extends Comparable<T>> {
+        private T value;
+        private Node<T> left;
+        private Node<T> right;
 
-        public Node() {
+        Node() {
         }
 
-        public Node(Integer value) {
+        Node(T value) {
             this.value = value;
         }
 
-        public boolean add(Integer value) {
+        public boolean add(T value) {
             if (this.value == null) {
                 this.value = value;
                 return true;
@@ -47,7 +47,7 @@ public class BinTree {
             switch (this.value.compareTo(value)) {
                 case -1:
                     if (right == null) {
-                        right = new Node(value);
+                        right = new Node<T>(value);
                         return true;
                     }
                     if (right.value.equals(value)) {
@@ -56,7 +56,7 @@ public class BinTree {
                     return right.add(value);
                 case 1:
                     if (left == null) {
-                        left = new Node(value);
+                        left = new Node<T>(value);
                         return true;
                     }
                     if (left.value.equals(value)) {
@@ -68,7 +68,7 @@ public class BinTree {
             }
         }
 
-        public boolean contains(Integer v) {
+        public boolean contains(T v) {
             if (this.value == null) {
                 return false;
             }
@@ -87,7 +87,7 @@ public class BinTree {
             StringBuilder sb = new StringBuilder();
             toStringRecursively(sb, 0);
             if (sb.length() > 2) {
-                sb.delete(sb.length() - 1, sb.length());
+                sb.deleteCharAt(sb.length() - 1);
             }
             return sb.toString();
         }
