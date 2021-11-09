@@ -11,7 +11,8 @@ public class August {
         Scanner inp = new Scanner(System.in);
         int n = inp.nextInt();
         String str = inp.nextLine();
-        Set<Integer> numbers, result = IntStream.iterate(1, i -> i + 1)
+        Set<Integer> numbers;
+        Set<Integer> result = IntStream.iterate(1, i -> i + 1)
                 .limit(n)
                 .boxed().collect(Collectors.toCollection(TreeSet::new));
 
@@ -19,6 +20,7 @@ public class August {
 
             if (str.equals("")) {
                 str = inp.nextLine();
+                continue;
             }
 
             numbers = parseNumbers(str);
@@ -29,10 +31,10 @@ public class August {
             } else {
                 result.removeAll(numbers);
             }
+            numbers = null;
             str = inp.nextLine();
         }
-
-        System.out.println(buildResultStr(result));
+        result.forEach(item -> System.out.print(item + " "));
         inp.close();
     }
 
@@ -40,11 +42,5 @@ public class August {
         Set<Integer> set = new HashSet<>();
         Arrays.stream(s.split(" ")).forEach(item -> set.add(Integer.parseInt(item)));
         return set;
-    }
-
-    private static String buildResultStr(Set<Integer> set) {
-        StringBuilder stringBuilder = new StringBuilder();
-        set.forEach(item -> stringBuilder.append(item).append(" "));
-        return stringBuilder.toString();
     }
 }
