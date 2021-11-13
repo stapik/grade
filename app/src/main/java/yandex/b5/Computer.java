@@ -30,7 +30,7 @@ public class Computer {
 
         System.out.println(groupCount);
 
-        List<String> result = new LinkedList<>();
+        List<String> result = new ArrayList<>(pupilGroupsCount + 1);
         Arrays.stream(groupMap).skip(1).forEach(i -> result.add(String.valueOf(i)));
         System.out.println(String.join(" ", result));
         inp.close();
