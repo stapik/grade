@@ -40,15 +40,15 @@ public class ParliamentSeats {
         double quotient = (double) totalVotes / PARLIAMENT_SEATS;
 
         Map<String, PartyParliamentData> data = new LinkedHashMap<>();
-        int totalParliamentSeats = 0, tempSeats;
+        int sumPartySeats = 0, partySeats;
         // round 1
         for (Map.Entry<String, Integer> entry : partiesVotes.entrySet()) {
-            tempSeats = (int) Math.floor(entry.getValue() / quotient);
-            totalParliamentSeats += tempSeats;
-            data.put(entry.getKey(), new PartyParliamentData(tempSeats, quotient != 0 ? (double) entry.getValue() % quotient : 0));
+            partySeats = (int) Math.floor(entry.getValue() / quotient);
+            sumPartySeats += partySeats;
+            data.put(entry.getKey(), new PartyParliamentData(partySeats, quotient != 0 ? (double) entry.getValue() % quotient : 0));
         }
         // round 2
-        AtomicInteger emptySeats = new AtomicInteger(PARLIAMENT_SEATS - totalParliamentSeats);
+        AtomicInteger emptySeats = new AtomicInteger(PARLIAMENT_SEATS - sumPartySeats);
         data.entrySet().stream().sorted((o1, o2) -> {
             PartyParliamentData d1 = o1.getValue();
             PartyParliamentData d2 = o2.getValue();
