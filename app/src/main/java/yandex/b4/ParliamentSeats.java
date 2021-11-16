@@ -7,36 +7,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Party {
-
-    private static final int PARLIAMENT_SEATS = 450;
+public class ParliamentSeats {
 
     public static void main(String[] args) {
-        double quotient = 0;
-        int totalVotes = 0;
-        Map<String, Integer> parties = readParties();
+        Map<String, Integer> partiesVotes = readPartiesVotes();
+        Map<String, PartyParliamentData> partiesParliamentSeats = calcPartiesParliamentSeats(partiesVotes);
 
-        for (Map.Entry<String, Integer> entry : parties.entrySet()) {
-            totalVotes += entry.getValue();
-        }
-        quotient = (double) totalVotes / PARLIAMENT_SEATS;
-        Map<String, PartyParliamentData> partiesParliamentVotes = getPartiesParliamentData(parties, quotient);
-
-        for (Map.Entry<String, PartyParliamentData> item : partiesParliamentVotes.entrySet()) {
-            System.out.println(item.getKey() + " " + item.getValue().getSeats());
-        }
+        partiesParliamentSeats.forEach((key, value) -> System.out.println(key + " " + value.getSeats()));
     }
 
-    private static Map<String, Integer> readParties() {
+    private static Map<String, Integer> readPartiesVotes() {
         Map<String, Integer> parties = new LinkedHashMap<>();
         Scanner inp = new Scanner(System.in);
-        Pattern pattern = Pattern.compile("(?<name>.+) (?<value>[0-9]+)$");
+        Pattern pattern = Pattern.compile("(?<party>.+) (?<votes>[0-9]+)$");
         Matcher matcher;
 
         while (inp.hasNextLine()) {
             matcher = pattern.matcher(inp.nextLine());
             if (matcher.find()) {
-                parties.put(matcher.group("name"), Integer.parseInt(matcher.group("value")));
+                parties.put(matcher.group("party"), Integer.parseInt(matcher.group("votes")));
             } else {
                 break;
             }
@@ -45,14 +34,18 @@ public class Party {
         return parties;
     }
 
-    private static Map<String, PartyParliamentData> getPartiesParliamentData(Map<String, Integer> parties, double quotient) {
+    private static Map<String, PartyParliamentData> calcPartiesParliamentSeats(Map<String, Integer> partiesVotes) {
+        final int PARLIAMENT_SEATS = 450;
+        int totalVotes = partiesVotes.values().stream().reduce(Integer::sum).orElse(0);
+        double quotient = (double) totalVotes / PARLIAMENT_SEATS;
+
         Map<String, PartyParliamentData> data = new LinkedHashMap<>();
         int totalParliamentSeats = 0, tempSeats;
         // round 1
-        for (Map.Entry<String, Integer> entry : parties.entrySet()) {
+        for (Map.Entry<String, Integer> entry : partiesVotes.entrySet()) {
             tempSeats = (int) Math.floor(entry.getValue() / quotient);
             totalParliamentSeats += tempSeats;
-            data.put(entry.getKey(), new PartyParliamentData(tempSeats, (double) entry.getValue() % quotient)); // TODO: find error
+            data.put(entry.getKey(), new PartyParliamentData(tempSeats, quotient != 0 ? (double) entry.getValue() % quotient : 0));
         }
         // round 2
         AtomicInteger emptySeats = new AtomicInteger(PARLIAMENT_SEATS - totalParliamentSeats);
