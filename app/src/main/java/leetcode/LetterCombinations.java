@@ -1,6 +1,7 @@
 package leetcode;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LetterCombinations {
 
@@ -60,6 +61,6 @@ public class LetterCombinations {
             charsCursor.entrySet().stream().filter(t -> t.getKey() > cursor[0]).forEach(t -> t.setValue(0));
         }
 
-        return result.stream().distinct().toList();
+        return result.stream().distinct().collect(Collectors.toList());
     }
 }
