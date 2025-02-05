@@ -43,11 +43,11 @@ public class ConnectedComponentsDFS {
         writer.close();
     }
 
-    private static void dfs(int v, List<List<Integer>> reverseGraph, boolean[] visited) {
+    private static void dfs(int v, List<List<Integer>> graph, boolean[] visited) {
         visited[v] = true;
-        for (int next : reverseGraph.get(v)) {
+        for (int next : graph.get(v)) {
             if (!visited[next]) {
-                dfs(next, reverseGraph, visited);
+                dfs(next, graph, visited);
             }
         }
     }
