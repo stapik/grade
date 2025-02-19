@@ -1,7 +1,9 @@
 package codeRun;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Map;
 
 public class BracketSequence {
 
@@ -10,33 +12,20 @@ public class BracketSequence {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
         char[] chars = reader.readLine().toCharArray();
         String result = "yes";
-        List<Character> openChars = List.of('(', '{', '[');
-        List<Character> closeChars = List.of(')', '}', ']');
-        Deque<Character> q = new ArrayDeque<>();
-
-        for (char aChar : chars) {
-            int openIdx = openChars.indexOf(aChar);
-            int closeIdx = closeChars.indexOf(aChar);
-
-            if (q.isEmpty() && closeIdx != -1) {
-                result = "no";
-                break;
-            }
-
-            if (openIdx != -1) {
-                q.push(aChar);
-            }
-            if (closeIdx != -1) {
-                if (!q.isEmpty() && closeIdx != openChars.indexOf(q.peek())) {
+        Map<Character, Character> bracketMap = Map.of(')', '(', ']', '[', '}', '{');
+        Deque<Character> stack = new ArrayDeque<>();
+        for (char c : chars) {
+            if (bracketMap.containsValue(c)) {
+                stack.push(c);
+            } else if (bracketMap.containsKey(c)) {
+                if (stack.isEmpty() || stack.pop() != bracketMap.get(c)) {
                     result = "no";
                     break;
-                } else {
-                    q.pop();
                 }
             }
         }
 
-        if(chars.length == 1 || !q.isEmpty()){
+        if(!stack.isEmpty()){
             result = "no";
         }
 
