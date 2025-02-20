@@ -49,12 +49,11 @@ public class ConnectedComponents2DFS {
 
     private static void dfsComponent(int from, List<List<Integer>> graph, boolean[] visited, List<Integer> component) {
         visited[from] = true;
-        List<Integer> resultComponent = component == null ? new ArrayList<>() : component;
-        resultComponent.add(from);
+        component.add(from);
 
         for (Integer neighbor : graph.get(from)) {
             if (!visited[neighbor]) {
-                dfsComponent(neighbor, graph, visited, resultComponent);
+                dfsComponent(neighbor, graph, visited, component);
             }
         }
     }
