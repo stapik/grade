@@ -1,6 +1,7 @@
 package codeRun;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -24,14 +25,14 @@ public class FleasBFS {
             fleas[i][1] = Integer.parseInt(inputArr[1]) - 1;
         }
 
-        int sum = 0, temp;
+        int sum = 0;
+        int[][] fieldDistances = bfsFieldDistances(n, m, s, t);
         for (int[] flea : fleas) {
-            temp = bfs(flea, n, m, s, t);
-            if (temp == -1) {
+            if (fieldDistances[flea[0]][flea[1]] == -1) {
                 sum = -1;
                 break;
             }
-            sum += temp;
+            sum += fieldDistances[flea[0]][flea[1]];
         }
 
         writer.write(String.valueOf(sum));
@@ -40,39 +41,35 @@ public class FleasBFS {
         reader.close();
     }
 
-    private static int bfs(final int[] start, int n, int m, int s, int t) {
-        Queue<int[]> queue = new LinkedList<>();
-        boolean[][] visited = new boolean[n][m];
-        int[][] distance = new int[n][m];
+    private static int[][] bfsFieldDistances(int n, int m, int s, int t) {
+        int[][] fieldDistances = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(fieldDistances[i], -1);
+        }
         int[][] moves = new int[][]{{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
+        boolean[][] visited = new boolean[n][m];
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{s, t});
+        visited[s][t] = true;
+        fieldDistances[s][t] = 0;
 
-        queue.add(new int[]{start[0], start[1]});
-        visited[start[0]][start[1]] = true;
-        distance[start[0]][start[1]] = 0;
-
-        while (!queue.isEmpty()) {
-            int[] cur = queue.poll();
-
-            if (cur[0] == s && cur[1] == t) {
-                return distance[cur[0]][cur[1]];
-            }
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            int x = cur[0];
+            int y = cur[1];
 
             for (int[] move : moves) {
-                int newX = cur[0] + move[0];
-                int newY = cur[1] + move[1];
+                int newX = x + move[0];
+                int newY = y + move[1];
 
-                if (newX < 0 || !(newX < n) || newY < 0 || !(newY < m)) {
-                    continue;
+                if(newX >= 0 && newX < n && newY >= 0 && newY < m && !visited[newX][newY]) {
+                    q.add(new int[]{newX, newY});
+                    visited[newX][newY] = true;
+                    fieldDistances[newX][newY] = fieldDistances[x][y] + 1;
                 }
-                if (visited[newX][newY]) {
-                    continue;
-                }
-                queue.add(new int[]{newX, newY});
-                visited[newX][newY] = true;
-                distance[newX][newY] = distance[cur[0]][cur[1]] + 1;
-
             }
         }
-        return -1;
+
+        return fieldDistances;
     }
 }
