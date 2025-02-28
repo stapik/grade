@@ -41,7 +41,7 @@ public class MetroBFS {
         if (from == to) return 0;
         Queue<Integer> queue = new LinkedList<>();
         Set<Integer> visitedLines = new HashSet<>();
-        Set<Integer> stationWithTransfers = new HashSet<>();
+        Set<Integer> visitedStations = new HashSet<>();
 
         for (int line : stationLines.get(from)) {
             queue.add(line);
@@ -60,8 +60,8 @@ public class MetroBFS {
                     if (station == to) {
                         return transfers;
                     }
-                    if (!stationWithTransfers.contains(station)) {
-                        stationWithTransfers.add(station);
+                    if (!visitedStations.contains(station)) {
+                        visitedStations.add(station);
                         for (int nextLine : stationLines.get(station)) {
                             if (!visitedLines.contains(nextLine)) {
                                 queue.add(nextLine);
