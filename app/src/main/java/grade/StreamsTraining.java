@@ -2,6 +2,7 @@ package grade;
 
 import javax.swing.plaf.PanelUI;
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -124,6 +125,9 @@ public class StreamsTraining {
         builder.add("builder 3");
         Stream<String> stream2 = builder.build();
         stream2.forEach(System.out::println);
+
+        System.out.println("parallerl stream");
+        List.of(1, 2, 3).parallelStream().forEach(System.out::println);
 
         System.out.println("stream iterate");
         Stream.iterate(0, x -> x + 2).limit(10).forEach(System.out::println);
