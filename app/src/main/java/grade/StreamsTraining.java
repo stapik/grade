@@ -1,7 +1,9 @@
 package grade;
 
+import javax.swing.plaf.PanelUI;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamsTraining {
@@ -31,7 +33,33 @@ public class StreamsTraining {
     public static void main(String[] args) {
 //        collectItems();
 //        createStreams();
-        sorting();
+//        sorting();
+//        flatMap();
+    }
+
+    public static void intStream() {
+        Stream.of(2,4,5,6)
+                .mapToInt(n -> n)
+                .sum();
+
+        Stream.of(2,4,5,6)
+                .mapToInt(n -> n)
+                .average()
+                .getAsDouble();
+    }
+
+    public static void flatMap() {
+        System.out.println("flatMap 2 strings");
+        Stream
+                .of("H e l l o", "w o r l d !")
+                .flatMap((p) -> Arrays.stream(p.split(" ")))
+                .forEach(System.out::println);
+
+        System.out.println("flatMap 2 strings with numbers");
+        Stream.of("1 2 3 4", "5 6 7 8")
+                .map(s -> Arrays.stream(s.split(" ")).mapToInt(Integer::parseInt).boxed().toArray())
+                .flatMap(Stream::of)
+                .forEach(System.out::println);
     }
 
     public static void sorting() {
@@ -74,6 +102,9 @@ public class StreamsTraining {
     }
 
     public static void createStreams() {
+        System.out.println("str arr to int arr");
+        Arrays.stream(new String[]{"1", "2", "3"}).mapToInt(Integer::parseInt).forEach(System.out::println);
+
         System.out.println("array as list");
         Arrays.asList(1, 2, 3).stream().forEach(System.out::println);
 
