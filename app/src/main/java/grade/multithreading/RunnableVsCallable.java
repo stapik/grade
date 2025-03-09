@@ -5,10 +5,11 @@ import java.util.concurrent.*;
 public class RunnableVsCallable {
 
     /**
+     * Callable & Runnable интерфейсы
      * Runnable не возвращает значения и не выбрасывает checked исключения
      * Callable возвращает Future и можно получить результат
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(5);
 
         Runnable runnable = () -> System.out.println("Hello World from Runnable");
@@ -29,5 +30,6 @@ public class RunnableVsCallable {
         executor.shutdown();
 
         FutureTask<String> futureTask = new FutureTask<>(callable);
+        System.out.printf(futureTask.get());
     }
 }
