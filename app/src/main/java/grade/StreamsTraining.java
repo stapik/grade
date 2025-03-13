@@ -47,6 +47,8 @@ public class StreamsTraining {
                 .mapToInt(n -> n)
                 .average()
                 .getAsDouble();
+
+        Optional.of(new Object()).map(Object::toString).orElse("no");
     }
 
     public static void flatMap() {
