@@ -2,7 +2,7 @@ package grade.multithreading;
 
 import java.util.concurrent.Semaphore;
 
-public class SemaphoreCase {
+public class SemaphoreExample {
 
     /**
      * Семафор инициализируется с максимальным кол-вом потоков, которые могут иметь одновременный доступ к ресурсу,

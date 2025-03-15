@@ -1,6 +1,6 @@
 package grade.multithreading;
 
-public class RaceCondition {
+public class RaceConditionExample {
 
     private static int count = 0;
 

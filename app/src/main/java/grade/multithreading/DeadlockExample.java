@@ -1,13 +1,13 @@
 package grade.multithreading;
 
-public class Deadlock {
+public class DeadlockExample {
     private static final Object LOCK1 = new Object();
     private static final Object LOCK2 = new Object();
 
     /**
      * первый поток блокирует монитор объекта LOCK1, второй поток блокирует монитор объекта LOCK2
      * первый поток в ожидании монитора LOCK2, второй в ожидании LOCK1
-     * @param args
+     * как исправить? нужно блокировать монитор в одном и том же порядке
      */
     public static void main(String[] args) throws InterruptedException {
         Thread threadOne = new Thread(() -> {

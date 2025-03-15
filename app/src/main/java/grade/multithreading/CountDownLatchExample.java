@@ -2,7 +2,7 @@ package grade.multithreading;
 
 import java.util.concurrent.CountDownLatch;
 
-public class CountDownLatchCase {
+public class CountDownLatchExample {
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(2);

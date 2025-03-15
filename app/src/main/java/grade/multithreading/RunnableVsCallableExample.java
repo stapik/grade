@@ -2,7 +2,7 @@ package grade.multithreading;
 
 import java.util.concurrent.*;
 
-public class RunnableVsCallable {
+public class RunnableVsCallableExample {
 
     /**
      * Callable & Runnable интерфейсы

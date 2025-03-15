@@ -1,6 +1,6 @@
 package grade.multithreading;
 
-public class InterruptCase {
+public class InterruptExample {
 
     /**
      * Вызов метода Thread.interrupt() ставит флаг о прерывании потока, код в потоке должен самостоятельно разбираться

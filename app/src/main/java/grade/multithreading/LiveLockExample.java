@@ -2,7 +2,7 @@ package grade.multithreading;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class LiveLock {
+public class LiveLockExample {
 
     private static AtomicInteger counter = new AtomicInteger(10);
 

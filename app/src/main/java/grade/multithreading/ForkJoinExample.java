@@ -3,7 +3,7 @@ package grade.multithreading;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-public class ForkJoinCase {
+public class ForkJoinExample {
 
     static class SumTask extends RecursiveTask<Integer> {
         private final int[] arr;

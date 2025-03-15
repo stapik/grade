@@ -2,7 +2,7 @@ package grade.multithreading;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class ReentrantWriteLockCase {
+public class ReentrantWriteLockExample {
     private static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private int value;
 
@@ -29,7 +29,7 @@ public class ReentrantWriteLockCase {
      * Если один поток пишет, остальные на чтение/запись ждут
      */
     public static void main(String[] args) {
-        ReentrantWriteLockCase obj = new ReentrantWriteLockCase();
+        ReentrantWriteLockExample obj = new ReentrantWriteLockExample();
         new Thread(() -> {
             for (int i = 0; i < 1_000_000; i++) {
                 if(lock.isWriteLocked()) {

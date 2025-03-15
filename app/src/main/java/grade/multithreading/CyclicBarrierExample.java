@@ -3,7 +3,7 @@ package grade.multithreading;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-public class CyclicBarrierCase {
+public class CyclicBarrierExample {
     /**
      * 3 parties = 3 await
      * делаем барьер из кол-ва await, как только барьер проходим, выполняется barrierAction

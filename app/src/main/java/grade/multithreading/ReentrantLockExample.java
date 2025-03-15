@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * ReentrantLock работает аналогично synchronized, подходит для эффективной работы в среде с высокой конкурентностью
  * к данным, более гибкий способ работы доступом к общему ресурсу
  */
-public class ReentrantLockCase {
+public class ReentrantLockExample {
 
     private final ReentrantLock lock = new ReentrantLock();
 
@@ -26,7 +26,7 @@ public class ReentrantLockCase {
     }
 
     public static void main(String[] args) {
-        ReentrantLockCase example = new ReentrantLockCase();
+        ReentrantLockExample example = new ReentrantLockExample();
         new Thread(() -> {
             try {
                 Thread.sleep(500);
