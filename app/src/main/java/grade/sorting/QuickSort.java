@@ -3,6 +3,7 @@ package grade.sorting;
 import java.util.Arrays;
 
 public class QuickSort {
+
     public static void quickSort(int[] arr, int left, int right) {
         if (left < right) {
             int pivotIndex = partition(arr, left, right);
@@ -13,7 +14,7 @@ public class QuickSort {
 
     private static int partition(int[] arr, int left, int right) {
         int pivot = arr[right]; // Опорный элемент
-        int i = left - 1;
+        int i = left - 1; // указатель на самый последний элемент, что меньше опорного
 
         for (int j = left; j < right; j++) {
             if (arr[j] < pivot) {
@@ -26,14 +27,16 @@ public class QuickSort {
     }
 
     private static void swap(int[] arr, int i, int j) {
+        System.out.println("i: " + i + ", j: " + j);
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
     public static void main(String[] args) {
-        int[] arr = {8, 4, 7, 3, 9, 1};
+        int[] arr = {1, 2, 3};
+        System.out.println(Arrays.toString(arr));
         quickSort(arr, 0, arr.length - 1);
-        System.out.println(Arrays.toString(arr)); // [1, 3, 4, 7, 8, 9]
+        System.out.println(Arrays.toString(arr));
     }
 }
