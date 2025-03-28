@@ -1,6 +1,7 @@
 package codeRun;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,8 @@ public class MaxSubstring {
         int resultLength = 0, startNumber = 0;
         Map<Character, Integer> charMap = new HashMap<>();
         int leftIdx = 0, rightIdx = 0;
+
+        new ArrayList<Integer>().stream().max(Integer::compareTo).orElse(0);
 
         while (rightIdx < n) {
             char right = chars[rightIdx];

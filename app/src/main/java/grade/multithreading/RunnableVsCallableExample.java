@@ -1,5 +1,7 @@
 package grade.multithreading;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.*;
 
 public class RunnableVsCallableExample {
@@ -19,7 +21,6 @@ public class RunnableVsCallableExample {
             System.out.println("Hello World from Callable");
             return "result";
         };
-
         executor.submit(runnable);
         Future<String> future = executor.submit(callable);
         try {
