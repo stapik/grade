@@ -1,10 +1,7 @@
 package grade;
 
-import javax.swing.plaf.PanelUI;
 import java.util.*;
-import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamsTraining {
@@ -36,14 +33,25 @@ public class StreamsTraining {
 //        createStreams();
 //        sorting();
 //        flatMap();
+        doubleSorting();
+    }
+
+    public static void doubleSorting() {
+        Stream.of(new int[]{1, 1}, new int[]{1, 5}, new int[]{2, 3}, new int[]{2, 9}, new int[]{3, 7}, new int[]{3, 3})
+                .sorted(
+                        Comparator.comparingInt((int[] arr) -> arr[0])
+                                .reversed()
+                                .thenComparingInt((int[] arr) -> arr[1])
+                )
+                .forEach(arr -> System.out.printf("level %s, value %s\n", arr[0], arr[1]));
     }
 
     public static void intStream() {
-        Stream.of(2,4,5,6)
+        Stream.of(2, 4, 5, 6)
                 .mapToInt(n -> n)
                 .sum();
 
-        Stream.of(2,4,5,6)
+        Stream.of(2, 4, 5, 6)
                 .mapToInt(n -> n)
                 .average()
                 .getAsDouble();
