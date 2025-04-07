@@ -29,8 +29,10 @@ public class Proxy {
 
         @Override
         public void readFile() {
-            System.out.println("Yeah! I'm proxy");
-            myFile.readFile();
+            if(true) {
+                System.out.println("Access allowed!");
+                myFile.readFile();
+            }
         }
     }
 
